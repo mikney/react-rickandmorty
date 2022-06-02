@@ -10,6 +10,7 @@ export interface Episode {
   url: string;
   created: string
 }
+export type KeyOfEpisode = keyof  Episode
 
 export const $episodes = createStore<Episode[][]>([]);
 
