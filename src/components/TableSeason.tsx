@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {Table} from "react-bootstrap";
-import {Episode, KeyOfEpisode} from "../effector/effector";
+import {Link} from "react-router-dom";
+import {EPISODE_ROUTE} from "../utils/consts";
+import {Episode, KeyOfEpisode} from "../types";
 
 interface TableSeason {
   episodes: Episode[]
@@ -24,7 +26,9 @@ const TableSeason: FC<TableSeason> = ({episodes, columns}) => {
         <tbody>
         {episodes.map(item => (
           <tr key={item.id}>
-            {columns?.id && <td>{item.id}</td>}
+            {columns?.id && <td className='pe-auto'>
+              <Link to={EPISODE_ROUTE + '/' + item.id}>{item.id}</Link>
+            </td>}
             {columns.name && <td>{item.name}</td>}
             {columns.air_date && <td>{item.air_date}</td>}
             {columns.episode && <td>{item.episode}</td>}

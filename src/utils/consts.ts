@@ -1,4 +1,4 @@
-import {KeyOfEpisode} from "../effector/effector";
+import {KeyOfEpisode} from "../types";
 
 export const HOME_ROUTE = '/';
 export const EPISODE_ROUTE = '/episode';

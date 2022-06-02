@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {KeyOfEpisode} from "../effector/effector";
 import {options} from "../utils/consts";
+import {KeyOfEpisode} from "../types";
 
 interface IMySort {
   showColOfTable: {[key in KeyOfEpisode]: boolean};

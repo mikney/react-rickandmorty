@@ -1,5 +1,5 @@
 import {useMemo} from "react";
-import {Episode, KeyOfEpisode} from "../effector/effector";
+import {Episode, KeyOfEpisode} from "../types";
 
 export const useSortedEpisodes = (episodes: Episode[][], season: number, sort: KeyOfEpisode): Episode[] => {
   return useMemo(() => {

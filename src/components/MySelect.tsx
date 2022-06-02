@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {KeyOfEpisode} from "../effector/effector";
+import {KeyOfEpisode} from "../types";
 
 interface MySelect {
   options: {value: string, name: string}[];
