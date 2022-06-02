@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Container, Pagination} from "react-bootstrap";
+import React, {useEffect} from 'react';
+import {Container} from "react-bootstrap";
 import TableSeason from "../components/TableSeason";
 import {useStore} from "effector-react";
 import MySelect from "../components/MySelect";
@@ -9,22 +9,13 @@ import {options} from "../utils/consts";
 import MySort from "../components/MySort";
 import {$episodesGetStatus, updateListEpisodes} from "../effector/effector-episodes";
 import {KeyOfEpisode} from "../types";
+import {$tableTools, setColumn, setFilter, setSeason, setSort} from "../effector/effector-control-table";
+import MyPagination from "../components/MyPagination";
 
 const HomePage = () => {
 
   const episodes = useStore($episodesGetStatus);
-  const [season, setSeason] = useState<number>(0)
-  const [sort, setSort] = useState<KeyOfEpisode>('id')
-  const [filter, setFilter] = useState<string>('')
-  const [showColOfTable, setShowColOfTable] = useState<{[key in KeyOfEpisode]: boolean}>({
-    id: true,
-    name: true,
-    air_date: true,
-    episode: true,
-    characters: true,
-    url: true,
-    created: true
-  })
+  const {sort, columns, season, filter} = useStore($tableTools);
   const filteredAndSortedEpisodes = useFilteredAndSortedEpisodes(episodes.data, season, sort, filter)
 
   useEffect(() => {
@@ -47,7 +38,7 @@ const HomePage = () => {
         <h5 className='me-3'>
           Table columns
         </h5>
-        <MySort showColOfTable={showColOfTable} setShowColOfTable={setShowColOfTable} />
+        <MySort showColOfTable={columns} setShowColOfTable={setColumn} />
       </div>
 
       <div className='d-flex align-items-center justify-content-sm-between'>
@@ -63,13 +54,7 @@ const HomePage = () => {
         </div>
         <div className='d-flex align-items-center mb-3'>
           <h5 className='me-3'>Select Season</h5>
-          <Pagination className='mb-0'>
-            {episodes.data?.map((item, index) => (
-              <Pagination.Item onClick={() => setSeason(index)} key={item[index].name} active={index === season}>
-                {index + 1}
-              </Pagination.Item>
-            ))}
-          </Pagination>
+          <MyPagination episodes={episodes?.data} setSeason={setSeason} season={season}/>
         </div>
       </div>
       {episodes.loading && !episodes.data.length ?
@@ -82,7 +67,7 @@ const HomePage = () => {
             <h4>Unexpected error</h4>
             :
             <>
-              {!!episodes.data.length && filteredAndSortedEpisodes && <TableSeason columns={showColOfTable} episodes={filteredAndSortedEpisodes} />}
+              {!!episodes.data.length && filteredAndSortedEpisodes && <TableSeason columns={columns} episodes={filteredAndSortedEpisodes} />}
               {filter && episodes && !filteredAndSortedEpisodes.length && <h4>Series not found</h4>}
             </>
           }

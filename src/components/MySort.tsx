@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
 import {options} from "../utils/consts";
 import {KeyOfEpisode} from "../types";
+import {Event} from "effector"
 
 interface IMySort {
   showColOfTable: {[key in KeyOfEpisode]: boolean};
-  setShowColOfTable: React.Dispatch<React.SetStateAction<{[key in KeyOfEpisode]: boolean}>>
+  setShowColOfTable: Event<{[key in KeyOfEpisode]: boolean}>
 }
 
 const MySort: FC<IMySort> = ({showColOfTable, setShowColOfTable}) => {

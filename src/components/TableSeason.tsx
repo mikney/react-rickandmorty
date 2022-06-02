@@ -31,7 +31,7 @@ const TableSeason: FC<TableSeason> = ({episodes, columns}) => {
             </td>}
             {columns.name && <td>{item.name}</td>}
             {columns.air_date && <td>{item.air_date}</td>}
-            {columns.episode && <td>{item.episode}</td>}
+            {columns.episode && <td>{item.episode.split('E')[1]}</td>}
             {columns.characters && <td>{item.characters.length}</td>}
           </tr>
         ))}

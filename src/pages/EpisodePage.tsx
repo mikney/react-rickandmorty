@@ -24,7 +24,7 @@ const EpisodePage = () => {
           <h6 className='display-6 text-lg-center'>Air date: {episode.data.air_date} {episode.data.episode}</h6>
           <h2 className='display-4 text-lg-center'>Characters</h2>
           <div className='d-flex flex-wrap'>
-            {characters.length && characters.map((item) => (
+            {!!characters.length && characters.map((item) => (
               <Character key={item.id} {...item}/>
             ))}
           </div>

@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
+import {Event} from "effector"
 
 interface IMyInput {
   filter: string;
-  setFilter: React.Dispatch<React.SetStateAction<string>>
+  setFilter: Event<string>
 }
 
 const MyInput: FC<IMyInput> = ({filter, setFilter}) => {

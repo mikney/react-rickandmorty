@@ -22,6 +22,7 @@ const updateStore = (state: Episode[], data: Episode[]) => {
     } else {
       result.push(season)
       season = []
+      season.push(item)
     }
   })
   return result;

@@ -1,8 +1,7 @@
-import {combine, createEffect, createStore, restore} from "effector";
+import {createEffect, createStore} from "effector";
 import {getAllCharacterInEpisode} from "../api/api";
 import {CharacterModel} from "../types";
-import {AxiosError} from "axios";
-import {$episode, getEpisode} from "./effector-episodes";
+
 
 
 
